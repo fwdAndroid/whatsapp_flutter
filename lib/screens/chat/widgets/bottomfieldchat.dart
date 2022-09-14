@@ -119,30 +119,30 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
   //   }
   // }
 
-  // void hideEmojiContainer() {
-  //   setState(() {
-  //     isShowEmojiContainer = false;
-  //   });
-  // }
+  void hideEmojiContainer() {
+    setState(() {
+      isShowEmojiContainer = false;
+    });
+  }
 
-  // void showEmojiContainer() {
-  //   setState(() {
-  //     isShowEmojiContainer = true;
-  //   });
-  // }
+  void showEmojiContainer() {
+    setState(() {
+      isShowEmojiContainer = true;
+    });
+  }
 
-  // void showKeyboard() => focusNode.requestFocus();
-  // void hideKeyboard() => focusNode.unfocus();
+  void showKeyboard() => focusNode.requestFocus();
+  void hideKeyboard() => focusNode.unfocus();
 
-  // void toggleEmojiKeyboardContainer() {
-  //   if (isShowEmojiContainer) {
-  //     showKeyboard();
-  //     hideEmojiContainer();
-  //   } else {
-  //     hideKeyboard();
-  //     showEmojiContainer();
-  //   }
-  // }
+  void toggleEmojiKeyboardContainer() {
+    if (isShowEmojiContainer) {
+      showKeyboard();
+      hideEmojiContainer();
+    } else {
+      hideKeyboard();
+      showEmojiContainer();
+    }
+  }
 
   @override
   void dispose() {
@@ -186,8 +186,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
                       child: Row(
                         children: [
                           IconButton(
-                            onPressed: () {},
-                            // toggleEmojiKeyboardContainer,
+                            onPressed: toggleEmojiKeyboardContainer,
                             icon: const Icon(
                               Icons.emoji_emotions,
                               color: Colors.grey,
