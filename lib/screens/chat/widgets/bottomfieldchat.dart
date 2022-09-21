@@ -6,10 +6,20 @@ import 'package:flutter_sound/public/flutter_sound_recorder.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:whatsapp_clone_flutter/common/enum/message_enum.dart';
+import 'package:whatsapp_clone_flutter/common/providers/message_reply_provider.dart';
 import 'package:whatsapp_clone_flutter/common/utils/colors.dart';
 import 'package:whatsapp_clone_flutter/common/utils/utils.dart';
 import 'package:whatsapp_clone_flutter/screens/chat/controller/chat_controller.dart';
+import 'package:whatsapp_clone_flutter/screens/chat/widgets/message_reply__preview.dart';
 
+// rules_version = '2';
+// service firebase.storage {
+//   match /b/{bucket}/o {
+//     match /{allPaths=**} {
+//       allow read, write: if request.auth != null;
+//     }
+//   }
+// }
 class BottomChatField extends ConsumerStatefulWidget {
   final String recieverUserId;
   // final bool isGroupChat;
@@ -38,7 +48,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
     _soundRecorder = FlutterSoundRecorder();
     openAudio();
   }
- 
+
   void openAudio() async {
     final status = await Permission.microphone.request();
     if (status != PermissionStatus.granted) {
@@ -67,7 +77,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
       }
       if (isRecording) {
         await _soundRecorder!.stopRecorder();
-        sendFileMessage(File(path), MessageEnumg.audio);
+        sendFileMessage(File(path), MessageEnum.audio);
       } else {
         await _soundRecorder!.startRecorder(
           toFile: path,
@@ -153,11 +163,11 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
 
   @override
   Widget build(BuildContext context) {
-    // final messageReply = ref.watch(messageReplyProvider);
-    // final isShowMessageReply = messageReply != null;
+    final messageReply = ref.watch(messageReplyProvider);
+    final isShowMessageReply = messageReply != null;
     return Column(
       children: [
-        // isShowMessageReply ? const MessageReplyPreview() : const SizedBox(),
+        isShowMessageReply ? const MessageReplyPreview() : const SizedBox(),
         Row(
           children: [
             Expanded(
@@ -192,7 +202,7 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
                             ),
                           ),
                           IconButton(
-                            onPressed: () {},
+                            onPressed: selectGIF,
 
                             // selectGIF,
                             icon: const Icon(
@@ -250,7 +260,6 @@ class _BottomChatFieldState extends ConsumerState<BottomChatField> {
                 backgroundColor: const Color(0xFF128C7E),
                 radius: 25,
                 child: GestureDetector(
-                
                   child: Icon(
                     isShowSendButton
                         ? Icons.send
