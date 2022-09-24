@@ -121,17 +121,10 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            if (tabBarController.index == 0) { 
-            } else {
-              File? pickedImage = await pickImageFromGallery(context);
-              // if (pickedImage != null) {
-              //   Navigator.pushNamed(
-              //     context,
-              //     ConfirmStatusScreen.routeName,
-              //     arguments: pickedImage,
-              //   );
-              // }
-            }
+            Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (builder) => SelectContactsScreen()));
           },
           backgroundColor: tabColor,
           child: const Icon(
