@@ -6,6 +6,8 @@ import 'package:whatsapp_clone_flutter/common/utils/utils.dart';
 import 'package:whatsapp_clone_flutter/features/auth/controllers/auth_controller.dart';
 import 'package:whatsapp_clone_flutter/features/auth/respository/auth_respository.dart';
 import 'package:whatsapp_clone_flutter/features/select_contacts/screens/select_contacts_screen.dart';
+import 'package:whatsapp_clone_flutter/features/status/screens/confirm_status_screen.dart';
+import 'package:whatsapp_clone_flutter/features/status/screens/status_contacts_screen.dart';
 import 'package:whatsapp_clone_flutter/screens/chat/widgets/contact_list.dart';
 
 class MobileLayoutScreen extends ConsumerStatefulWidget {
@@ -114,17 +116,24 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
           controller: tabBarController,
           children: const [
             ContactsList(),
-            Text('Status'),
-            // StatusContactsScreen(),
+            StatusContactsScreen(),
             Text('Calls')
           ],
         ),
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (builder) => SelectContactsScreen()));
+            if (tabBarController.index == 0) {
+              Navigator.pushNamed(context, SelectContactsScreen.routeName);
+            } else {
+              File? pickedImage = await pickImageFromGallery(context);
+              if (pickedImage != null) {
+                Navigator.pushNamed(
+                  context,
+                  ConfirmStatusScreen.routeName,
+                  arguments: pickedImage,
+                );
+              }
+            }
           },
           backgroundColor: tabColor,
           child: const Icon(
