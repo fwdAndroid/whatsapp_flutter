@@ -10,6 +10,7 @@ import 'package:whatsapp_clone_flutter/common/providers/message_reply_provider.d
 import 'package:whatsapp_clone_flutter/common/repositories/common_firebase_storage_repository.dart';
 import 'package:whatsapp_clone_flutter/common/utils/utils.dart';
 import 'package:whatsapp_clone_flutter/models/chat_models.dart';
+import 'package:whatsapp_clone_flutter/models/group.dart';
 import 'package:whatsapp_clone_flutter/models/message_model.dart';
 import 'package:whatsapp_clone_flutter/models/user_models.dart';
 
@@ -215,6 +216,38 @@ class ChatRepository {
         .collection('chats')
         .doc(recieverUserId)
         .collection('messages')
+        .orderBy('timeSent')
+        .snapshots()
+        .map((event) {
+      List<Message> messages = [];
+      for (var document in event.docs) {
+        messages.add(Message.fromMap(document.data()));
+      }
+      return messages;
+    });
+  }
+
+//Groups
+
+  Stream<List<Group>> getChatGroups() {
+    return firestore.collection('groups').snapshots().map((event) {
+      List<Group> groups = [];
+      for (var document in event.docs) {
+        var group = Group.fromMap(document.data());
+        if (group.membersUid.contains(auth.currentUser!.uid)) {
+          groups.add(group);
+        }
+      }
+      return groups;
+    });
+  }
+
+  //GroupStream
+  Stream<List<Message>> getGroupChatStream(String groudId) {
+    return firestore
+        .collection('groups')
+        .doc(groudId)
+        .collection('chats')
         .orderBy('timeSent')
         .snapshots()
         .map((event) {
