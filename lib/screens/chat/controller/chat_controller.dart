@@ -46,7 +46,7 @@ class ChatController {
     BuildContext context,
     String text,
     String recieverUserId,
-    // bool isGroupChat,
+    bool isGroupChat,
   ) {
     final messageReply = ref.read(messageReplyProvider);
     ref.read(userDataAuthProvider).whenData(
@@ -56,7 +56,7 @@ class ChatController {
             recieverUserId: recieverUserId,
             senderUser: value!,
             messageReply: messageReply,
-            // isGroupChat: isGroupChat,
+            isGroupChat: isGroupChat,
           ),
         );
     ref.read(messageReplyProvider.state).update((state) => null);
@@ -67,7 +67,7 @@ class ChatController {
     File file,
     String recieverUserId,
     MessageEnum messageEnum,
-    // bool isGroupChat,
+    bool isGroupChat,
   ) {
     final messageReply = ref.read(messageReplyProvider);
     ref.read(userDataAuthProvider).whenData(
@@ -79,7 +79,7 @@ class ChatController {
             messageEnum: messageEnum,
             ref: ref,
             messageReply: messageReply,
-            // isGroupChat: isGroupChat,
+            isGroupChat: isGroupChat,
           ),
         );
     ref.read(messageReplyProvider.state).update((state) => null);
@@ -89,7 +89,7 @@ class ChatController {
     BuildContext context,
     String gifUrl,
     String recieverUserId,
-    // bool isGroupChat,
+    bool isGroupChat,
   ) {
     final messageReply = ref.read(messageReplyProvider);
     int gifUrlPartIndex = gifUrl.lastIndexOf('-') + 1;
@@ -98,13 +98,12 @@ class ChatController {
 
     ref.read(userDataAuthProvider).whenData(
           (value) => chatRepository.sendGIFMessage(
-            context: context,
-            gifUrl: newgifUrl,
-            recieverUserId: recieverUserId,
-            senderUser: value!,
-            messageReply: messageReply,
-            // isGroupChat: isGroupChat,
-          ),
+              context: context,
+              gifUrl: newgifUrl,
+              recieverUserId: recieverUserId,
+              senderUser: value!,
+              messageReply: messageReply,
+              isGroupChat: isGroupChat),
         );
     ref.read(messageReplyProvider.state).update((state) => null);
   }
