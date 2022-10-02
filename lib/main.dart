@@ -6,7 +6,6 @@ import 'package:whatsapp_clone_flutter/common/widgets/error.dart';
 import 'package:whatsapp_clone_flutter/common/widgets/loader.dart';
 import 'package:whatsapp_clone_flutter/features/auth/controllers/auth_controller.dart';
 import 'package:whatsapp_clone_flutter/features/landing_screen.dart';
-import 'package:whatsapp_clone_flutter/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:whatsapp_clone_flutter/router.dart';
 import 'package:whatsapp_clone_flutter/screens/mobile_layout_screen.dart';
 
