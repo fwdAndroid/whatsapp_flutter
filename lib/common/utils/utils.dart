@@ -26,8 +26,6 @@ Future<File?> pickImageFromGallery(BuildContext context) async {
   return image;
 }
 
-//Video
-
 Future<File?> pickVideoFromGallery(BuildContext context) async {
   File? video;
   try {

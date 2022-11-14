@@ -1,5 +1,5 @@
 class AgoraConfig {
   static String token = '';
-  static String appId = 'ffa66411f0314ee0ba905c0d49939861';
-  static String appcertificate = '52aaa876cbfb47ffa499c91f19e8a42b';
+  static String appId = '01254a6c76514e4787628f4b6bdc1786';
+  static String appcertificate = 'd4cafc0cc7d3466d9b51b9d604d971ff';
 }

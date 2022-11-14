@@ -4,15 +4,23 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_clone_flutter/common/utils/colors.dart';
 import 'package:whatsapp_clone_flutter/common/widgets/error.dart';
 import 'package:whatsapp_clone_flutter/common/widgets/loader.dart';
-import 'package:whatsapp_clone_flutter/features/auth/controllers/auth_controller.dart';
-import 'package:whatsapp_clone_flutter/features/landing_screen.dart';
+import 'package:whatsapp_clone_flutter/features/auth/controller/auth_controller.dart';
+import 'package:whatsapp_clone_flutter/features/landing/screens/landing_screen.dart';
+import 'package:whatsapp_clone_flutter/firebase_options.dart';
+import 'package:whatsapp_clone_flutter/mobile_layout_screen.dart';
 import 'package:whatsapp_clone_flutter/router.dart';
-import 'package:whatsapp_clone_flutter/screens/mobile_layout_screen.dart';
+
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(ProviderScope(child: const MyApp()));
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  runApp(
+    const ProviderScope(
+      child: MyApp(),
+    ),
+  );
 }
 
 class MyApp extends ConsumerWidget {
@@ -24,8 +32,11 @@ class MyApp extends ConsumerWidget {
       debugShowCheckedModeBanner: false,
       title: 'Whatsapp UI',
       theme: ThemeData.dark().copyWith(
-          scaffoldBackgroundColor: backgroundColor,
-          appBarTheme: const AppBarTheme(color: appBarColor)),
+        scaffoldBackgroundColor: backgroundColor,
+        appBarTheme: const AppBarTheme(
+          color: appBarColor,
+        ),
+      ),
       onGenerateRoute: (settings) => generateRoute(settings),
       home: ref.watch(userDataAuthProvider).when(
             data: (user) {

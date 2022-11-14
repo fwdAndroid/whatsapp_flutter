@@ -2,7 +2,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_clone_flutter/common/utils/utils.dart';
-import 'package:whatsapp_clone_flutter/features/auth/controllers/auth_controller.dart';
+import 'package:whatsapp_clone_flutter/features/auth/controller/auth_controller.dart';
+
 class UserInformationScreen extends ConsumerStatefulWidget {
   static const String routeName = '/user-information';
   const UserInformationScreen({Key? key}) : super(key: key);
@@ -31,7 +32,7 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
     String name = nameController.text.trim();
 
     if (name.isNotEmpty) {
-      ref.read(AuthControllerProvider).saveUserDataToFirebase(
+      ref.read(authControllerProvider).saveUserDataToFirebase(
             context,
             name,
             image,
@@ -88,7 +89,7 @@ class _UserInformationScreenState extends ConsumerState<UserInformationScreen> {
                     ),
                   ),
                   IconButton(
-                    onPressed:storeUserData,
+                    onPressed: storeUserData,
                     icon: const Icon(
                       Icons.done,
                     ),

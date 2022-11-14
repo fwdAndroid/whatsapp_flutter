@@ -7,10 +7,10 @@ import 'package:whatsapp_clone_flutter/features/auth/screens/otp_screen.dart';
 import 'package:whatsapp_clone_flutter/features/auth/screens/user_information_screen.dart';
 import 'package:whatsapp_clone_flutter/features/group/screens/create_group_screen.dart';
 import 'package:whatsapp_clone_flutter/features/select_contacts/screens/select_contacts_screen.dart';
+import 'package:whatsapp_clone_flutter/features/chat/screens/mobile_chat_screen.dart';
 import 'package:whatsapp_clone_flutter/features/status/screens/confirm_status_screen.dart';
 import 'package:whatsapp_clone_flutter/features/status/screens/status_screen.dart';
 import 'package:whatsapp_clone_flutter/models/status_model.dart';
-import 'package:whatsapp_clone_flutter/screens/mobile_chat_screen.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
   switch (settings.name) {

@@ -5,7 +5,6 @@ import 'package:whatsapp_clone_flutter/common/widgets/error.dart';
 import 'package:whatsapp_clone_flutter/common/widgets/loader.dart';
 import 'package:whatsapp_clone_flutter/features/select_contacts/controller/select_contact_controller.dart';
 
-
 class SelectContactsScreen extends ConsumerWidget {
   static const String routeName = '/select-contact';
   const SelectContactsScreen({Key? key}) : super(key: key);

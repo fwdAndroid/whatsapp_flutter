@@ -1,7 +1,8 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:whatsapp_clone_flutter/features/auth/controllers/auth_controller.dart';
+import 'package:whatsapp_clone_flutter/features/auth/controller/auth_controller.dart';
+
 import 'package:whatsapp_clone_flutter/features/status/repository/status_repository.dart';
 import 'package:whatsapp_clone_flutter/models/status_model.dart';
 

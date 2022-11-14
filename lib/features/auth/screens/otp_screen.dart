@@ -1,24 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_clone_flutter/common/utils/colors.dart';
-import 'package:whatsapp_clone_flutter/features/auth/controllers/auth_controller.dart';
-// Widget Ref Communicatates Widgets From Providers
-class OTPScreen extends ConsumerWidget{
-    static const String routeName = '/otp-screen';
-    String verificationId;
+import 'package:whatsapp_clone_flutter/features/auth/controller/auth_controller.dart';
 
-   OTPScreen({Key? key,required this.verificationId}) : super(key: key);
- 
- void verifyOTP(WidgetRef ref, BuildContext context, String userOTP) {
-    ref.read(AuthControllerProvider).verifyOTP(
+class OTPScreen extends ConsumerWidget {
+  static const String routeName = '/otp-screen';
+  final String verificationId;
+  const OTPScreen({
+    Key? key,
+    required this.verificationId,
+  }) : super(key: key);
+
+  void verifyOTP(WidgetRef ref, BuildContext context, String userOTP) {
+    ref.read(authControllerProvider).verifyOTP(
           context,
           verificationId,
           userOTP,
         );
   }
 
+  @override
+  Widget build(BuildContext context, WidgetRef ref) {
+    final size = MediaQuery.of(context).size;
 
-  Widget build(BuildContext context,WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Verifying your number'),
@@ -31,13 +35,12 @@ class OTPScreen extends ConsumerWidget{
             const SizedBox(height: 20),
             const Text('We have sent an SMS with a code.'),
             SizedBox(
-              width: MediaQuery.of(context).size.width * 0.5,
+              width: size.width * 0.5,
               child: TextField(
                 textAlign: TextAlign.center,
                 decoration: const InputDecoration(
                   hintText: '- - - - - -',
                   hintStyle: TextStyle(
-
                     fontSize: 30,
                   ),
                 ),

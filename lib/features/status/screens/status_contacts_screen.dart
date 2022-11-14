@@ -6,7 +6,6 @@ import 'package:whatsapp_clone_flutter/features/status/controller/status_control
 import 'package:whatsapp_clone_flutter/features/status/screens/status_screen.dart';
 import 'package:whatsapp_clone_flutter/models/status_model.dart';
 
-
 class StatusContactsScreen extends ConsumerWidget {
   const StatusContactsScreen({Key? key}) : super(key: key);
 

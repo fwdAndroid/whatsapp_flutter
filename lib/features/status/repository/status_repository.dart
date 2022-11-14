@@ -10,8 +10,7 @@ import 'package:uuid/uuid.dart';
 import 'package:whatsapp_clone_flutter/common/repositories/common_firebase_storage_repository.dart';
 import 'package:whatsapp_clone_flutter/common/utils/utils.dart';
 import 'package:whatsapp_clone_flutter/models/status_model.dart';
-import 'package:whatsapp_clone_flutter/models/user_models.dart';
-
+import 'package:whatsapp_clone_flutter/models/user_model.dart';
 
 final statusRepositoryProvider = Provider(
   (ref) => StatusRepository(
