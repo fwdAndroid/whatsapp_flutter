@@ -1,9 +1,11 @@
 import 'dart:io';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:whatsapp_clone_flutter/common/utils/colors.dart';
 import 'package:whatsapp_clone_flutter/common/utils/utils.dart';
 import 'package:whatsapp_clone_flutter/features/auth/controller/auth_controller.dart';
+import 'package:whatsapp_clone_flutter/features/auth/screens/login_screen.dart';
 import 'package:whatsapp_clone_flutter/features/group/screens/create_group_screen.dart';
 import 'package:whatsapp_clone_flutter/features/select_contacts/screens/select_contacts_screen.dart';
 import 'package:whatsapp_clone_flutter/features/chat/widgets/contacts_list.dart';
@@ -68,7 +70,14 @@ class _MobileLayoutScreenState extends ConsumerState<MobileLayoutScreen>
           actions: [
             IconButton(
               icon: const Icon(Icons.search, color: Colors.grey),
-              onPressed: () {},
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut().then((value) => {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (builder) => LoginScreen()))
+                    });
+              },
             ),
             PopupMenuButton(
               icon: const Icon(

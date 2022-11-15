@@ -44,7 +44,7 @@ Route<dynamic> generateRoute(RouteSettings settings) {
           name: name,
           uid: uid,
           isGroupChat: isGroupChat,
-          profilePic: profilePic,
+          profilePic: profilePic.toString(),
         ),
       );
     case ConfirmStatusScreen.routeName:

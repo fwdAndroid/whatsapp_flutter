@@ -13,9 +13,7 @@ import 'package:whatsapp_clone_flutter/router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-    options: DefaultFirebaseOptions.currentPlatform,
-  );
+  await Firebase.initializeApp();
   runApp(
     const ProviderScope(
       child: MyApp(),
